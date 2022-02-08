@@ -1,7 +1,11 @@
 {% extends "base.html" %}
+{% load static %}
 {% block page_title %}
-로그인 페이지 입니당
+로그인
 {% endblock page_title %}
+{% block others %}
+<link rel="stylesheet" href="{% static 'css/users.css'%}">
+{% endblock others %}
 {% block content %}
 <!-- <div>
     <h2>로그인</h2>
@@ -24,13 +28,33 @@
 </div> -->
 <!-- 폼테스트중 -->
 
-<div>
+<div class="container">
+    <h1>
+        <a href="#">
+            <img src="{% static 'img/logo.png'%}" alt="lakeflix logo">
+            <span>Lakeflix</span>
+        </a>
+    </h1>
     <h2>로그인</h2>
-    <form class="form-area" method="post" action="{% url 'users:login' %}">
+    <form method="post" action="{% url 'users:login' %}">
         {% csrf_token %}
-        {{form.as_p}}
+        <div class="input_block">
+            <input type="text" name="username" id="username" required spellcheck="false">
+            <span class="placeholder">
+                아이디
+            </span>
+        </div>
+        <div class="input_block">
+            <input type="password" name="password" id="password" required spellcheck="false">
+            <span class="placeholder">
+                비밀번호
+            </span>
+        </div>
+        <div class="not_login">
+            <a href="{% url 'users:signup' %}"><p>회원 가입</p></a>
+            <a href="#"><p>비밀번호 찾기</p></a>
+        </div>
         <button type="submit">로그인</button>
     </form>
 </div>
-
 {% endblock content %}

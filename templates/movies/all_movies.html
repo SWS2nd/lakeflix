@@ -2,22 +2,21 @@
 
 
 {% block page_title %}
-서브페이지 테스트입니다
+메인 페이지
 {% endblock page_title %}
 
 
 {% block content %}
 
 {% for movie in movies %}
-
 <h4>{{movie.title_kor}} :
     <a href="/movies/{{movie.pk}}">
         아이디 {{movie.pk}} 로 가는 링크
+{% comment %} <img src="{{movie.poster}}" alt="1"> {% endcomment %}
+{% comment %} <p>{{movie.genre_list.filter(MovieType='SF')}}</p> {% endcomment %}
     </a>
 </h4>
-
-
 {% endfor %}
-
+{% comment %} {% if movie.genre is ac %}{% endif %} {% endcomment %}
 
 {% endblock %}

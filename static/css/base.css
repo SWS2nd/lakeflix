@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 400;
+    letter-spacing: -0.05em;
+    color: white;
+}
+
+:root {
+    --bg-color: #1A1A1A;
+    --point-color: #4891B9;
+    --font-color: #F2F2F2;
+    --non-selected-color-light: #808080;
+    --non-selected-color-deep: #5A5A5A;
+}
+
+body {
+    background-color: var(--bg-color);
+}
+
+a,p {
+    text-decoration: none;
+}
+
+li, ol{
+    list-style: none;
+}
+
+input,textarea, select{
+    outline: none;
+}
+input:-webkit-autofill {
+    -webkit-box-shadow : 0 0 0 1000px var(--bg-color) inset;
+    -webkit-text-fill-color : var(--point-color);
+}
+
+/* nav.html */
+header{
+    width: 100%;
+    height: 58px;
+    color:#4891B9;
+}
+
+header div.nav{
+width: 100%;
+   height: 58px;
+   float: left;
+}
+
+header div.nav h1{
+    width: 120px;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 0;
+    display: block;
+    text-align: center;
+    float:left;
+}
+
+header div.nav h1 a img{
+    width: 120px;
+}
+
+header div.nav ul.left_list{
+    margin-top:20px;
+    margin-left: 20px;
+    float:left;
+}
+
+ul.left_list li{
+    float:left;
+    margin-right: 20px;
+    padding-bottom: 5px;
+    font-size: 16px;
+}
+ul.left_list li.on{
+    font-weight: 500;
+    border-bottom: 2px solid white;
+}
+
+ul.right_list{
+    margin-top:20px;
+    float:right;
+}
+
+
+ul.right_list li{
+    float: left;
+    margin-right: 10px;
+}
+
+.user_profile{
+    width: 24px;
+    height: 24px;
+    background-color: #4891B9;
+    border-radius: 24px;
+    cursor: pointer;
+}
+
+.user_profile_setting{
+    display: none;
+}
+
+/* footer.html */

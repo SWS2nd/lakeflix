@@ -1,33 +1,48 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="ko">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>
+        {% block page_title %}
+        
+        {% endblock page_title %} | Lakeflix
+    </title>
+    <!--제이쿼리-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
-    <title>{% block page_title %}{% endblock page_title %} | Lakeflix</title>
+    <!--noto sans 폰트-->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/base.css'%}">
+    {% block others %}
+    
+    {% endblock others %}
 </head>
 
-<body class="text-gray-800 mt-24 font-light">
+<body>
+    <!--헤더-->
     {% if user.is_authenticated %}
-    {% include "partials/nav.html" %}
-    {% else %}
-        <form class="form-inline my-2 my-lg-0">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item disabled">
-                    <a class="nav-link" href="/">홈</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'users:login' %}">로그인</a>
-                </li>
-            </ul>
-        </form>
+        {% include "partials/nav.html" %}
     {% endif %}
-    {% block content %}
-    {% endblock %}
-    {% include "partials/footer.html" %}
-</body>
+    <!--헤더-->
 
+    <!--콘텐츠-->
+    {% block content %}
+
+    {% endblock %}
+    <!--콘텐츠-->
+
+    <!--푸터-->
+    {% if user.is_authenticated %}
+        {% include "partials/footer.html" %}
+    <!--푸터-->
+    {% endif %}
+    
+    {% block script %}
+    
+    {% endblock script %}
+</body>
 </html>

@@ -1,9 +1,43 @@
-<header>
-    <a href="{% url "core:home" %}">LAKEFLIX</a>
-    <ul>
-        <li><a class="nav-link" href="{% url 'movies:tag_search' %}">태그검색</a></li>
-        <li><a class="nav-link" href="{% url 'movies:tag_search' %}">NEW/TREND</a></li>
-        <li><a href="{% url "users:logout" %}">로그아웃</a></li>
-    </ul>
+{% load static %}
 
+<header>
+    <div class="nav">
+        <h1><a href="{% url 'core:home'%}">
+                <img src="{% static 'img/logo.png'%}" alt="lakeflix logo">
+                <span>Lakeflix</span></a>
+        </h1>
+        <ul class="left_list">
+            <li class="on"><a href="{% url "core:home" %}">홈</a></li>
+            <li><a href="{% url 'movies:tag_search' %}">장르 검색</a></li>
+            <li><a href="#">새로운 대세 콘텐츠</a></li>
+        </ul>
+        <ul class="right_list">
+            <li class="search_box">
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-search" viewBox="0 0 16 16">
+                        <path
+                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                    </svg>
+                </a>
+            </li>
+            <li class="notification">
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-bell-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
+                    </svg>
+                </a>
+            </li>
+            <li class="user_setting">
+                <div class="user_profile">
+
+                </div>
+                <div class="user_profile_setting">
+                    <a href="{% url "users:logout" %}">로그아웃</a>
+                </div>
+            </li>
+        </ul>
+    </div>
 </header>
