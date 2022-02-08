@@ -110,14 +110,21 @@
                     for(let i=0; i<rows.length; i++) {
                         let title_kor = rows[i]['title_kor']
                         let pk = rows[i]['id']
+                        let poster = rows[i]['poster']
                         // console.log(title_kor, pk)
-                        let temp_html = `<p class="media-body">
-                                            <h4>${title_kor} :
+                        let temp_html = `<div class="movie_box" style="margin-right: 2%; width: 100%">
+                                            <div class="movie_poster" style="overflow:auto; width: 100%">
                                                 <a href="/movies/${pk}">
-                                                    아이디 ${pk} 로 가는 링크
+                                                    <img src="${poster}" alt="위의 이미지를 누르면 해당 상세 페이지로 이동됩니다."
+                                                         style="width: 200px; height: 100%">
                                                 </a>
-                                            </h4>
-                                        </p>`
+                                            </div>
+                                            <div class="movie_title" style="overflow:auto;">
+                                                <h4 class="text-gray-200 text-3xl font-medium">
+                                                    ${title_kor}
+                                                </h4>
+                                            </div>
+                                        </div>`
 
                         $('#media-body').append(temp_html)
                     }
@@ -160,7 +167,7 @@
                 <h4 class="filter-sub-title">Movie Type</h4>
                 <div class="filter-checkbox-body">
                     <fieldset>
-                        <legend>sub title 1</legend>
+                        <legend>장르별</legend>
                         {% for genre in genres %}
                             <div id="genre-box" class="genre-box">
                                 <div class="check-label common" style="display: flex">
@@ -203,19 +210,32 @@
             </div>
         </div>
         <!-- 오른쪽 컬럼 : 필터링 된 영상들 -->
-        <div id="main-contents">
-            <h2 id="media-title">Movies</h2>
-            <h4 id="media-count">총 {{ mov_cnt }}개의 작품이 검색되었어요!</h4>
-            <div id="media-body">
-                <p>
-                    {% for movie in movies %}
-                        <h4>{{ movie.title_kor }} :
-                            <a href="/movies/{{ movie.pk }}">
-                                아이디 {{ movie.pk }} 로 가는 링크
-                            </a>
-                        </h4>
-                    {% endfor %}
-                </p>
+        <div id="main-contents" style="width:100%; height:100%;">
+            <div class="recommend_section_wrapper" style="margin-left: 5%; margin-right: 5%; margin-bottom: 2%">
+                <div style='margin-top:2rem;margin-bottom:2rem;'>
+                    <h2 id="media-title" class="text-gray-200 text-3xl font-medium" style="margin-bottom: 1%">
+                        검색된 Movies 😎
+                    </h2>
+                    <h4 id="media-count" style="margin-bottom: 2%">총 {{ mov_cnt }}개의 작품이 검색되었어요!</h4>
+                    <div id="media-body" class='movie_line'
+                         style="display:flex; width: 100%; height: 100%; overflow-x: hidden; overflow-y: visible;">
+                        {% for movie in movies %}
+                            <div class="movie_box" style="margin-right: 2%; width: 100%">
+                                <div class="movie_poster" style="overflow:auto; width: 100%">
+                                    <a href="/movies/{{ movie.pk }}">
+                                        <img src="{{ movie.poster }}" alt="위의 이미지를 누르면 해당 상세 페이지로 이동됩니다."
+                                             style="width: 200px; height: 100%">
+                                    </a>
+                                </div>
+                                <div class="movie_title" style="overflow:auto;">
+                                    <h4 class="text-gray-200 text-3xl font-medium">
+                                        {{ movie.title_kor }}
+                                    </h4>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -31,6 +31,8 @@ class Movies(models.Model):
     director = models.CharField(max_length=200)
     justwatch_rating = models.CharField(max_length=10)
     imdb_rating = models.CharField(max_length=10)
+    imdb_rating_average = models.CharField(max_length=10)
+    imdb_vote_count = models.CharField(max_length=10)
     synopsis = models.TextField(max_length=500)
     poster = models.CharField(max_length=100)
     genre_list = models.ManyToManyField(

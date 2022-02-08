@@ -5,14 +5,84 @@
 {% endblock page_title %}
 
 {% block content %}
-<h4>{{movie.title_kor}}</h4>
-<p>{{movie.synopsis}}</p>
-<img src="{{movie.poster}}" alt="1">
-<ul>
-    {% for tag in movie.genre_list.all %}
-    <li>{{tag}}</li>
-    {% endfor %}
-</ul>
+    <div class="main_body" style="display: flex; width:100%; height:100%; margin-top: 1%; background-size: cover;">
+        <div class="picture_body" style="width: 35%; height: 100%">
+            <img src="{{ movie.poster }}" alt="1" style="width: 100%; height: 100%">
+        </div>
+        <div class="main_text" style="width: 65%; height: 100%; padding-right: 5%; padding-left: 5%">
+            <ul style="width: 100%; height: 100%">
+                <h1 style="margin-top: 10%; margin-bottom: 1%">{{ movie.title_kor }}</h1>
+                <li style="display: flex">
+                    <p style="margin-right: 1%; margin-bottom: 1%">장르 : </p>
+                    {% for tag in movie.genre_list.all %}
+                        [{{ tag }}]
+                    {% endfor %}
+                </li>
+                <li style="display: flex">
+                    <p style="margin-right: 1%; margin-bottom: 1%">JustWatch Rating : </p>
+                    <p>{{ movie.justwatch_rating }}</p>
+                </li>
+                <li style="display: flex">
+                    <p style="margin-right: 1%; margin-bottom: 1%">IMDB Rating : </p>
+                    <p>{{ movie.imdb_rating }}</p>
+                </li>
+                <li style="display: flex">
+                    <p style="margin-right: 1%; margin-bottom: 1%">감독 : </p>
+                    <p>{{ movie.director }}</p>
+                </li>
+                <li>
+                    <p style="margin-right: 1%; margin-bottom: 1%">시놉시스 : </p>
+                    <p>{{ movie.synopsis }}</p>
+                </li>
+                <div class="botton_div" style="width: 100%; margin-top: 10%; display: flex; justify-content: center">
+                    <li>
+                        <a href="#">
+                            <button type="button" class="btn btn-primary" style="width: 150px; height: 50px; margin-right: 50px; background-color: #4891B9"><span style="font-size: large; font-weight: bold">Play</span></button>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <button type="button" class="btn btn-light" style="width: 150px; height: 50px; background-color: slategrey"><span class="bi bi-hand-thumbs-up" style="font-size: large; font-weight: bold">좋아요❤️</span></button>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <button type="button" class="btn btn-light" style="width: 150px; height: 50px; background-color: slategrey"><span class="bi bi-hand-thumbs-up" style="font-size: large; font-weight: bold">싫어요🤮</span></button>
+                        </a>
+                    </li>
+                </div>
+            </ul>
+        </div>
+    </div>
 
+    <hr>
+
+    <section class='recommend_section_container' style="width:100%; height:100%;">
+        <div class="recommend_section_wrapper" style="margin-left: 5%; margin-right: 5%; margin-bottom: 2%">
+            <div style='margin-top:2rem;margin-bottom:2rem;'>
+                <h2 class="text-gray-200 text-3xl font-medium" style="margin-bottom: 1%">
+                    같이 보면 좋을 Movies 😎🍿
+                </h2>
+                <div class='movie_line' style="display:flex; width: 100%; height: 250px; overflow-x: hidden; overflow-y: visible;">
+                    {% for recommend_movie in recommend_movies %}
+                        <div class="movie_box" style="margin-right: 2%; overflow-x: auto; overflow-y: visible">
+                            <div class="movie_poster" style="overflow:auto; width: 100%">
+                                <a href="/movies/{{recommend_movie.pk}}">
+                                    <img src="{{ recommend_movie.poster }}" alt="위의 이미지를 누르면 해당 상세 페이지로 이동됩니다." style="width: 100%; height: 100%">
+                                </a>
+                            </div>
+                            <div class="movie_title" style="overflow:auto;">
+                                <h4 class="text-gray-200 text-3xl font-medium">
+                                    {{ recommend_movie.title_kor }}
+                                </h4>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr>
 
 {% endblock content %}

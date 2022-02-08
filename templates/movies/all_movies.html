@@ -7,16 +7,78 @@
 
 
 {% block content %}
+        <div class="main_body" style="display: flex; width:100%; height:100%; margin-top: 1%; background-image: url('{{ random_movie.poster }}'); background-position: center; background-size: cover;">
+            <div class="random_movie_background" style="width: 100%; height: 100%; display: flex; justify-content: space-between; align-items: center; padding-right: 5%; padding-left: 5%;">
+                <div class="left_column" style="width: 100%;">
+                    <div style="display: flex; margin-bottom: 10%">
+                        <p style="margin-right: 5%; margin-bottom: 5%; font-weight: bold; font-size: medium">JustWatch 평점</p>
+                        <p style="font-weight: bold; font-size: xxx-large">{{ random_movie.justwatch_rating }}</p>
+                    </div>
+                    <div style="display: flex">
+                        <p style="margin-right: 1%; margin-bottom: 1%; font-weight: bold; font-size: medium">장르  </p>
+                        {% for tag in random_movie.genre_list.all %}
+                            <p style="font-weight: bold; font-size: x-large">[{{ tag }}]</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="right_column" style="width: 100%">
+                    <div class="title_synopsis_div">
+                        <h1 style="margin-top: 10%; margin-bottom: 1%; font-weight: bold; font-size: xxx-large">{{ random_movie.title_kor }}</h1>
+                        <div class="synopsis_text_box" style="width: 80%">
+                            <p>{{ random_movie.synopsis }}</p>
+                        </div>
+                    </div>
+                    <div class="botton_div" style="width: 100%; margin-top: 5%; margin-bottom: 2%; display: flex;">
+                        <div class="play_btn">
+                            <a href="/movies/{{random_movie.pk}}">
+                                <button type="button" class="btn btn-primary"
+                                        style="width: 150px; height: 50px; margin-right: 50px; background-color: #4891B9">
+                                    <span style="font-size: large; font-weight: bold">Play</span></button>
+                            </a>
+                        </div>
+                        <div class="detail_btn">
+                            <a href="/movies/{{random_movie.pk}}">
+                                <button type="button" class="btn btn-light"
+                                        style="width: 150px; height: 50px; background-color: slategrey"><span
+                                        class="bi bi-hand-thumbs-up"
+                                        style="font-size: large; font-weight: bold">상세보기</span></button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-{% for movie in movies %}
-<h4>{{movie.title_kor}} :
-    <a href="/movies/{{movie.pk}}">
-        아이디 {{movie.pk}} 로 가는 링크
-{% comment %} <img src="{{movie.poster}}" alt="1"> {% endcomment %}
-{% comment %} <p>{{movie.genre_list.filter(MovieType='SF')}}</p> {% endcomment %}
-    </a>
-</h4>
-{% endfor %}
-{% comment %} {% if movie.genre is ac %}{% endif %} {% endcomment %}
+        <hr>
+
+        <section class='recommend_section_container' style="width:100%; height:100%;">
+            <div class="recommend_section_wrapper" style="margin-left: 5%; margin-right: 5%; margin-bottom: 2%">
+                <div style='margin-top:2rem;margin-bottom:2rem;'>
+                    <h2 class="text-gray-200 text-3xl font-medium" style="margin-bottom: 1%">
+                        영화 & 액션
+                    </h2>
+                    <div class='movie_line'
+                         style="display:flex; width: 100%; height: 250px; overflow-x: hidden; overflow-y: visible;">
+                            {% for action_movie in action_movies %}
+                                <div class="movie_box" style="margin-right: 2%; overflow-x: auto; overflow-y: visible">
+                                    <div class="movie_poster" style="overflow:auto; width: 100%">
+                                        <a href="/movies/{{ action_movie.pk }}">
+                                            <img src="{{ action_movie.poster }}" alt="위의 이미지를 누르면 해당 상세 페이지로 이동됩니다."
+                                                 style="width: 100%; height: 100%">
+                                        </a>
+                                    </div>
+                                    <div class="movie_title" style="overflow:auto;">
+                                        <h4 class="text-gray-200 text-3xl font-medium">
+                                            {{ action_movie.title_kor }}
+                                        </h4>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <hr>
 
 {% endblock %}
